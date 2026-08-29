@@ -1,9 +1,10 @@
 $kind: collection
+name: Identity
 description: |-
   Identity service API.
 
-  - Public endpoints (health, register, login, refresh, JWKS) skip auth.
-  - Login/Refresh automatically save `access_token` and `refresh_token` into collection variables.
+  - Public endpoints (health, register, login, refresh, logout, JWKS) skip auth.
+  - Login/Refresh/Switch Organization automatically save `access_token` and `refresh_token` into collection variables.
   - Protected requests use Bearer `{{access_token}}`.
   - Create Organization saves `organization_id` for the subfolders.
 variables:

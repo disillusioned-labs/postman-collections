@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/transfer"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "user_id": "{{user_id}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Transfer ownership succeeded", () => pm.response.code < 300);
+      const body = pm.response.json();
+      if (body.data && body.data.to) {
+          pm.collectionVariables.set('user_id', body.data.to.id);
+      }
+    language: text/javascript
+order: 6000

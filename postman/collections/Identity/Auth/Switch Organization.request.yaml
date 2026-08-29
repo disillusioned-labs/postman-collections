@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/auth/switch-org"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "organization_id": "{{organization_id}}",
+        "refresh_token": "{{refresh_token}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Switch organization succeeded", () => pm.response.code < 300);
+      const body = pm.response.json();
+      if (body.data && body.data.access_token) {
+          pm.collectionVariables.set('access_token', body.data.access_token);
+          pm.collectionVariables.set('refresh_token', body.data.refresh_token);
+      }
+    language: text/javascript
+order: 3600
