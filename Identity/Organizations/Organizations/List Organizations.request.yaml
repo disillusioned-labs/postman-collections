@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/"
+method: GET
+order: 2000

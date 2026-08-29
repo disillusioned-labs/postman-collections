@@ -1,0 +1,6 @@
+name: vps
+values:
+  - key: base_url
+    value: 'http://vps-large'
+  - key: identity_port
+    value: ':8080'

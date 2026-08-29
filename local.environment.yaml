@@ -1,0 +1,6 @@
+name: local
+values:
+  - key: base_url
+    value: 'http://localhost'
+  - key: identity_port
+    value: ':8080'

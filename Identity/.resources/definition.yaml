@@ -1,0 +1,20 @@
+$kind: collection
+description: |-
+  Identity service API.
+
+  - Public endpoints (health, register, login, refresh, JWKS) skip auth.
+  - Login/Refresh automatically save `access_token` and `refresh_token` into collection variables.
+  - Protected requests use Bearer `{{access_token}}`.
+  - Create Organization saves `organization_id` for the subfolders.
+variables:
+  identity_port: :8080
+  access_token: ""
+  refresh_token: ""
+  organization_id: ""
+  invitation_token: ""
+auth:
+  - id: b209437b-8e28-4778-9a6a-dfffc9e7285f
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{access_token}}"

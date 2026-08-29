@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/members/me"
+method: DELETE
+order: 4000

@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/invitations/token/{{invitation_token}}"
+method: GET
+auth:
+  type: noauth
+order: 4000

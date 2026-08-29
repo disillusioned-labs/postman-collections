@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/invitations"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "email": "newmember@example.com",
+        "role": "member"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Created", () => pm.response.code < 300);
+      const body = pm.response.json();
+      const token = body.data && (body.data.token || (body.data.invitation && body.data.invitation.token));
+      if (token) {
+          pm.collectionVariables.set('invitation_token', token);
+      }
+    language: text/javascript
+order: 1000

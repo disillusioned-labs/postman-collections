@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Disillusioned Labs",
+        "type": "company"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Created", () => pm.response.code < 300);
+      const body = pm.response.json();
+      if (body.data && body.data.id) {
+          pm.collectionVariables.set('organization_id', body.data.id);
+      }
+    language: text/javascript
+order: 1000

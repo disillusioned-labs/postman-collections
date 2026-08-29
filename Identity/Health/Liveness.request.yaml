@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/healthz"
+method: GET
+auth:
+  type: noauth
+order: 1000
