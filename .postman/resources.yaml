@@ -1,6 +1,6 @@
 # Use this workspace to collaborate
 workspace:
-  id: 958cf58d-7e3a-4704-9e3c-a5226ed504a9
+  id: 793972e4-1970-463a-9977-a6532f79a3d0
 
 # Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
 
@@ -8,7 +8,5 @@ cloudResources:
   collections:
     ../postman/collections/Identity: a1b2c3d4-0001-4a5a-9e01-identity000001
 
-localResources:
-  environments:
-    - ../postman/environments/local.environment.yaml
-    - ../postman/environments/vps.environment.yaml
+# Elements under postman/collections/ and postman/environments/ are auto-registered.
+# Only list resources outside the postman/ folder here.
