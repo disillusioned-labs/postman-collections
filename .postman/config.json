@@ -4,7 +4,8 @@
   },
   "entities": {
     "environments": [
-      "..\\local.postman_environment.json"
+      "..\\local.postman_environment.json",
+      "..\\vps.postman_environment.json"
     ],
     "flows": [],
     "globals": [],
