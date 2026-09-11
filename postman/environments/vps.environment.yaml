@@ -4,3 +4,7 @@ values:
     value: 'http://vps-large'
   - key: identity_port
     value: ':8080'
+  - key: identity_grpc_port
+    value: ':9090'
+  - key: expense_port
+    value: ':8081'

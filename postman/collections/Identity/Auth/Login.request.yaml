@@ -4,10 +4,10 @@ method: POST
 headers:
   Content-Type: application/json
 body:
-  type: text
+  type: json
   content: |-
     {
-        "email": "imannuel@example.com",
+        "email": "Pfeffer@example.com",
         "password": "secretpassword"
     }
 auth:

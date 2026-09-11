@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/service-access"
+method: GET
+description: List all service-access grants in the organization.
+order: 3000

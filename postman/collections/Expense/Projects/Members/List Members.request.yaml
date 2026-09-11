@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/projects/{{project_id}}/members"
+method: GET
+order: 1000

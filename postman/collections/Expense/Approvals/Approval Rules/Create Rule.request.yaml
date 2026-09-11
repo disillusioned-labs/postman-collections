@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/approval-rules/"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "project_id": "{{project_id}}",
+        "approver_id": "{{approver_id}}",
+        "step": 1
+    }
+description: Set `approver_id` to an active member of the organization.
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Created", () => pm.response.code < 300);
+      const body = pm.response.json();
+      if (body.data && body.data.id) {
+          pm.collectionVariables.set('rule_id', body.data.id);
+      }
+    language: text/javascript
+order: 2000

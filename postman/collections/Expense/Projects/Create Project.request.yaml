@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/projects/"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "Project Gedung A"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Created", () => pm.response.code < 300);
+      const body = pm.response.json();
+      if (body.data && body.data.id) {
+          pm.collectionVariables.set('project_id', body.data.id);
+      }
+    language: text/javascript
+order: 2000

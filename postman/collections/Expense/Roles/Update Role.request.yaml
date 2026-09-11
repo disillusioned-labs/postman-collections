@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/roles/{{role_id}}"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "name": "finance-manager",
+        "actions": ["transaction.view", "transaction.create"]
+    }
+order: 3000

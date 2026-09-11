@@ -1,0 +1,42 @@
+$kind: collection
+name: Expense
+description: |-
+  Expense service API (port 8081).
+
+  - Liveness/Readiness skip auth; everything under /api/v1 uses Bearer `{{access_token}}` - run the Identity collection first (Login) so the variable is filled.
+  - Requests save ids into collection variables as they run: role_id, project_id, document_id, approval_id, rule_id, user_id (from the Identity collection).
+  - There is NO create-transaction endpoint: a draft is born from OCR. Upload the first nota via
+    "Upload to Project" (POST /projects/{id}/documents) - once OCR succeeds, the OCR consumer creates
+    the draft (status `draft`) and binds the document to it. Until ocr-gateway/ocr are running, set
+    `transaction_id` manually (e.g. from List Transactions) for the transaction-scoped requests.
+  - "Upload Document" (POST /transactions/{id}/documents) is the attach path: a second nota bound to
+    an existing draft; its OCR result is appended to that draft by the consumer.
+  - `total_amount` is always server-derived from `items` (SUM of item amounts) - send `items`, never `total_amount`.
+  - PATCH a draft with `items` replaces ALL item rows; omit `items` to keep them.
+
+  ## gRPC (internal service-to-service, decision D2)
+  Proto: `expense.v1.ExpenseService` (platform/contract/expense/expense.proto)
+  Handler: `internal/handler/grpc/expense.go` (binary cmd/grpc, port 9091)
+
+  gRPC requests live in the `gRPC/` folder: CheckApproverAssignments + ReassignApproverRules.
+  Served by expense, called by identity before committing a member removal (fail-closed).
+variables:
+  expense_port: :8081
+  expense_grpc_port: :9091
+  organization_id: ""
+  reassign_to_id: ""
+  actor_id: ""
+  role_id: ""
+  approver_id: ""
+  project_id: ""
+  user_id: ""
+  transaction_id: ""
+  document_id: ""
+  approval_id: ""
+  rule_id: ""
+auth:
+  - id: 6f1c2b7e-3a90-4d21-9c4a-7be51d0a8f22
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{access_token}}"

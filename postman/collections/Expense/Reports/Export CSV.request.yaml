@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/reports/export"
+method: GET
+description: Streams transactions as CSV (same filters as Summary).
+order: 2000

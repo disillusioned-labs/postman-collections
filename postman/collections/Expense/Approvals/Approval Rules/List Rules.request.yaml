@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/approval-rules/"
+method: GET
+description: |-
+  Optional query: ?project_id= - empty means the default organization rules.
+order: 1000

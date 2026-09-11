@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/projects/{{project_id}}/members/{{user_id}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "role_id": "{{role_id}}"
+    }
+description: |-
+  One role per (project, user) - replaces the whole placement.
+  Set `user_id` manually, or run Create Transaction with that user's token first (it saves created_by.id).
+order: 2000

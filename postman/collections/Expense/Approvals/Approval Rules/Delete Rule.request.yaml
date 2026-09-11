@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/approval-rules/{{rule_id}}"
+method: DELETE
+order: 4000

@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/transactions/{{transaction_id}}/submit"
+method: POST
+description: |-
+  Requires at least one document and total_amount > 0; freezes the resolved approvers as tasks.
+order: 2000

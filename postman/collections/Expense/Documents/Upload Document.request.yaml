@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/transactions/{{transaction_id}}/documents"
+method: POST
+description: |-
+  Attach path: multipart/form-data with a `file` field (max 25MB) - attach it in the Body tab (Postman CLI yaml cannot embed binary content).
+  Binds a second nota to an EXISTING draft (`{{transaction_id}}`, draft-only, else 409 TRANSACTION_LOCKED);
+  the OCR consumer appends its result as an item to that same draft.
+  Answers 202: OCR runs asynchronously; poll Get Document for the result.
+  For the first nota use "Upload to Project" - the draft does not exist yet before OCR succeeds.
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Accepted", () => pm.response.code < 300);
+      const body = pm.response.json();
+      if (body.data && body.data.id) {
+          pm.collectionVariables.set('document_id', body.data.id);
+      }
+    language: text/javascript
+order: 1000

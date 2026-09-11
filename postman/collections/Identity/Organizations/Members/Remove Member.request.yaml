@@ -1,4 +1,9 @@
 $kind: http-request
 url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/members/{{user_id}}"
 method: DELETE
+description: |-
+  If the target is still an approver on live expense rules (decision D2), identity answers
+  409 APPROVER_STILL_ASSIGNED with details.rules [{id, step, project_id?}] - then run
+  "Remove Member (Reassign Rules)" with reassign_to_id set. expense down -> 503
+  EXPENSE_SERVICE_DOWN; the removal never commits with rules left dangling.
 order: 3000

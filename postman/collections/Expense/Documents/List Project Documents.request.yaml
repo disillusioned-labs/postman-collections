@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/projects/{{project_id}}/documents"
+method: GET
+description: Lists all documents of a project, including standalone ones still waiting for OCR (transaction_id empty).
+order: 1500

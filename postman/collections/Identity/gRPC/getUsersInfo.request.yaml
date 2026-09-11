@@ -1,0 +1,11 @@
+$kind: grpc-request
+url: "{{base_url}}{{identity_grpc_port}}"
+methodPath: identity.v1.IdentityService.GetUsersInfo
+methodDescriptor: CusDChFpZGVudGl0eV92MS5wcm90bxILaWRlbnRpdHkudjEiNQoTR2V0VXNlcnNJbmZvUmVxdWVzdBIeCgV1c2VycxgBIAMoCzILVXNlck9yZ1BhaXJCAhABIj8KC1VzZXJPcmdQYWlyEhMKB3VzZXJfaWQYASABKAlCAhABEhsKD29yZ2FuaXphdGlvbl9pZBgCIAEoCUICEAEiMwoUR2V0VXNlcnNJbmZvUmVzcG9uc2USGwoFdXNlcnMYASADKAsyCFVzZXJJbmZvQgIQASJtCghVc2VySW5mbxITCgd1c2VyX2lkGAEgASgJQgIQARIQCgRuYW1lGAIgASgJQgIQARIRCgVlbWFpbBgDIAEoCUICEAESEAoEcm9sZRgEIAEoCUICEAESFQoJaXNfYWN0aXZlGAUgASgIQgIQATJmCg9JZGVudGl0eVNlcnZpY2USUwoMR2V0VXNlcnNJbmZvEiAuaWRlbnRpdHkudjEuR2V0VXNlcnNJbmZvUmVxdWVzdBohLmlkZW50aXR5LnYxLkdldFVzZXJzSW5mb1Jlc3BvbnNlQkVaQ2dpdGh1Yi5jb20vZGlzaWxsdXNpb25lZC1sYWJzL3BsYXRmb3JtL2NvbnRyYWN0L2lkZW50aXR5O2lkZW50aXR5cGI=
+message:
+  content: '{ "users": [{ "user_id": "{{user_id}}", "organization_id": "{{organization_id}}" }] }'
+settings: {}
+schema:
+  source: file
+  location: /C:/Users/Imannuel/Desktop/disillusioned-labs/platform/contract/identity/identity.proto
+order: 1788697235784

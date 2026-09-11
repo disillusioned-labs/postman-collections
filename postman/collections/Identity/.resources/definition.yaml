@@ -1,5 +1,4 @@
 $kind: collection
-name: Identity
 description: |-
   Identity service API.
 
@@ -7,12 +6,23 @@ description: |-
   - Login/Refresh/Switch Organization automatically save `access_token` and `refresh_token` into collection variables.
   - Protected requests use Bearer `{{access_token}}`.
   - Create Organization saves `organization_id` for the subfolders.
+
+  ## gRPC (internal service-to-service)
+  Proto: `identity.v1.IdentityService` (platform/contract/identity/identity.proto)
+  Handler: `internal/handler/grpc/identity.go`
+
+  gRPC requests live in the `gRPC/` folder. Load proto via server reflection or file upload.
+  RPCs: IsMemberActive, GetMemberRole, GetUsersInfo, GetOrgStatus, IsServiceAccessAllowed
 variables:
   identity_port: :8080
+  identity_grpc_port: :9090
   access_token: ""
   refresh_token: ""
   organization_id: ""
   invitation_token: ""
+  user_id: ""
+  reassign_to_id: ""
+  actor_id: ""
 auth:
   - id: b209437b-8e28-4778-9a6a-dfffc9e7285f
     type: bearer

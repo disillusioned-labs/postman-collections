@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{base_url}}{{expense_port}}/api/v1/transactions/{{transaction_id}}"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+        "description": "Pembelian material gedung (revisi)",
+        "items": [
+            {"description": "Semen 50kg", "quantity": 45, "amount": 2250000}
+        ]
+    }
+description: |-
+  Draft-only. Sending `items` replaces ALL item rows; omit `items` to keep them.
+  `total_amount` is recomputed by the server from the items.
+order: 4000

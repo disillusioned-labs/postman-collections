@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/service-access/{{user_id}}"
+method: DELETE
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+        "service_name": "expense"
+    }
+description: Revoke a previously granted service access. Owner/admin implicitly have access to all services.
+order: 4000

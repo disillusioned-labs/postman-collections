@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/service-access/{{user_id}}"
+method: GET
+description: List services the user can access within the organization.
+order: 2000
