@@ -1,4 +1,4 @@
 $kind: http-request
-url: "{{base_url}}{{expense_port}}/api/v1/roles/{{role_id}}"
+url: "{{base_url}}{{expense_port}}/api/v1/projects/{{project_id}}/roles/{{role_id}}"
 method: DELETE
 order: 4000

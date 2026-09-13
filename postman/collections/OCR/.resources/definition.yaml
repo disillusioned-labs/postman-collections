@@ -1,0 +1,25 @@
+$kind: collection
+name: OCR
+description: |-
+  OCR engine service (Kontrak B, `document.v1.DocumentService`).
+
+  - Pure gRPC, no HTTP surface. Port 9094 (binary ocr-api, Python `ocr/`).
+  - Only ocr-gateway may call this service (network policy); there is no auth
+    interceptor - no metadata needed.
+  - `schema_id` is the extraction schema (e.g. `receipt@1`); the gateway derives it
+    from Kontrak A's `doc_type` and stamps `caller_id` - when calling directly,
+    fill both yourself.
+  - `idempotency_key` must be a UUID; a duplicate submit returns ALREADY_EXISTS
+    with the original `document_id`.
+  - Submit answers `QUEUED`; the engine processes via its SAQ worker and publishes
+    terminal results to `ocr.document.processed.v1`. Poll GetDocument for status.
+  - grpc.health.v1.Health is served (Check/Watch).
+  - Proto source: ocr/proto/document/v1/document.proto
+variables:
+  ocr_grpc_port: :9094
+  idempotency_key: ""
+  external_ref: ""
+  caller_id: expense
+  bucket: ""
+  storage_path: ""
+  document_id: ""

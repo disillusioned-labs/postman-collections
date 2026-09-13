@@ -1,0 +1,23 @@
+$kind: collection
+name: OCR Gateway
+description: |-
+  OCR Gateway service (Kontrak A, `ocr.gateway.v1.DocumentGateway`).
+
+  - gRPC: port 9093, binary cmd/grpc. Every RPC requires `x-api-key` metadata
+    (value `{{gateway_api_key}}`, must match a caller registered in gateway config);
+    requests in the gRPC/ folder send it. Rate limiting is per caller via Redis.
+  - `doc_type` is the business name ("receipt", "invoice", ...); the gateway maps it
+    to `schema_id` and stamps `caller_id` before forwarding to the ocr engine.
+  - Submit always answers `QUEUED` (status only); the result arrives via the
+    `ocr.document.routed.<service>.v1` Kafka topic, or poll GetDocument.
+  - HTTP surface is probes only: /healthz and /readyz on port 8083.
+  - Proto source: ocr-gateway/proto/ocr/gateway/v1/gateway.proto
+variables:
+  gateway_grpc_port: :9093
+  gateway_port: :8083
+  gateway_api_key: ""
+  idempotency_key: ""
+  external_ref: ""
+  bucket: ""
+  storage_path: ""
+  document_id: ""

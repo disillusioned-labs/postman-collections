@@ -1,4 +1,4 @@
 $kind: http-request
-url: "{{base_url}}{{expense_port}}/api/v1/roles"
+url: "{{base_url}}{{expense_port}}/api/v1/projects/{{project_id}}/roles"
 method: GET
 order: 1000

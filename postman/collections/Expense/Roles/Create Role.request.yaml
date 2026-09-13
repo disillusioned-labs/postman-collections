@@ -1,5 +1,5 @@
 $kind: http-request
-url: "{{base_url}}{{expense_port}}/api/v1/roles"
+url: "{{base_url}}{{expense_port}}/api/v1/projects/{{project_id}}/roles"
 method: POST
 headers:
   Content-Type: application/json
