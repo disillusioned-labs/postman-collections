@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/devices"
+method: DELETE
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+        "token": "fcm_device_token_here"
+    }
+description: Revoke the caller's push token (call on logout or token rotation). Requires bearer JWT. Returns 404 if the token was never registered by this user or is already revoked.
+order: 1001

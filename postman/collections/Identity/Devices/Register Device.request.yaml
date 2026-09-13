@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{base_url}}{{identity_port}}/api/v1/devices"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+        "token": "fcm_device_token_here",
+        "platform": "android",
+        "app_version": "1.0.0"
+    }
+description: Register the caller's Firebase push token. Requires bearer JWT. platform is one of android|ios|web. Re-registering an active token refreshes its metadata (upsert).
+order: 1000
