@@ -21,8 +21,6 @@ variables:
   organization_id: ""
   invitation_token: ""
   user_id: ""
-  reassign_to_id: ""
-  actor_id: ""
 auth:
   - id: b209437b-8e28-4778-9a6a-dfffc9e7285f
     type: bearer

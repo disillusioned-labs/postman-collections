@@ -1,5 +1,5 @@
 $kind: http-request
-url: "{{base_url}}{{expense_port}}/api/v1/approvals/aging?days=3&limit=20&offset=0"
+url: "{{base_url}}{{expense_port}}/api/v1/approvals/aging"
 method: GET
 description: |-
   Owner/admin only. Transactions stuck in `pending_approval` whose active step has been
@@ -7,4 +7,6 @@ description: |-
   authority (D14/MVP). Each item carries waiting_since, days_waiting and the approvers
   who have not decided yet. Companion: the reminder worker emails those approvers
   (approval_reminder) when REMINDER_ENABLED=true.
+
+  Query params: ?days=3 (min 1), ?limit=20, ?offset=0.
 order: 2500

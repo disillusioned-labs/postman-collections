@@ -1,5 +1,5 @@
 $kind: http-request
-url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/members/{{user_id}}?reassign_rules_to={{reassign_to_id}}"
+url: "{{base_url}}{{identity_port}}/api/v1/organizations/{{organization_id}}/members/{{user_id}}"
 method: DELETE
 description: |-
   D2 combined flow, second attempt: set `reassign_to_id` (an active member) first.
@@ -7,4 +7,6 @@ description: |-
   live expense rules, identity answers 409 APPROVER_STILL_ASSIGNED with details.rules;
   this request then moves those rules (audit event approval_rule.reassigned) and the
   removal proceeds. expense down -> 503 EXPENSE_SERVICE_DOWN, removal never commits.
+
+  Query param: ?reassign_rules_to={{reassign_to_id}}
 order: 3100
