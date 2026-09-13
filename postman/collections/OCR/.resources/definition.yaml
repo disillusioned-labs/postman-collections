@@ -11,6 +11,12 @@ description: |-
     fill both yourself.
   - `idempotency_key` must be a UUID; a duplicate submit returns ALREADY_EXISTS
     with the original `document_id`.
+  - `ProcessDocument` runs the same pipeline inline and answers with the
+    terminal status (+ result/error) - for interactive callers. Small inputs
+    only: declared size above OCR_SYNC_MAX_BYTES (default 10 MiB) is rejected
+    with FAILED_PRECONDITION; set a client deadline above the OCR worst case
+    (~60s per page). A repeated idempotency key replays the document's current
+    state without re-processing.
   - Submit answers `QUEUED`; the engine processes via its SAQ worker and publishes
     terminal results to `ocr.document.processed.v1`. Poll GetDocument for status.
   - grpc.health.v1.Health is served (Check/Watch).
